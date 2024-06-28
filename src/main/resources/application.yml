@@ -3,13 +3,14 @@ server:
   shutdown: graceful
 
 spring:
+  profiles:
+    include:
+      - secret
   lifecycle:
     timeout-per-shutdown-phase: 20s
   jpa:
     show-sql: true
-    #    database-platform: mysql
-    hibernate:
-      ddl-auto: none
+    ddl-auto: none
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:13306/gift?serverTimezone=UTC&characterEncoding=UTF-8
@@ -28,7 +29,7 @@ logging:
 example.order:
   base-url: http://localhost:8080/
 
-#cloud:
-#  aws:
-#    access-key: aaaa
-#    secret-key: bbbb
+cloud:
+  aws:
+    access-key: ${aws.access-key}
+    secret-key: ${aws.secret-key}
