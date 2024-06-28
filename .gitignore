@@ -36,6 +36,11 @@ out/
 ### VS Code ###
 .vscode/
 
-/docker-compose/mysql
 .gradle
+
 /build
+/out
+/docker-compose/mysql
+generated
+
+application-secret.yml
