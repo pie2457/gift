@@ -1,12 +1,14 @@
 package dev.practice.gift.domain.gift;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import dev.practice.gift.domain.gift.order.OrderApiCaller;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class GiftServiceImpl implements GiftService {
 	private final GiftReader giftReader;
 	private final GiftStore giftStore;
