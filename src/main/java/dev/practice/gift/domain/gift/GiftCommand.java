@@ -12,7 +12,7 @@ public class GiftCommand {
 	@Builder
 	@ToString
 	public static class Register {
-		private final Long buyerUserId;
+		private final Long userId;
 		private final String payMethod;
 		private final String pushType;
 		private final String giftReceiverName;
@@ -22,7 +22,7 @@ public class GiftCommand {
 
 		public Gift toEntity(String orderToken) {
 			return Gift.builder()
-				.buyerUserId(buyerUserId)
+				.buyerUserId(userId)
 				.orderToken(orderToken)
 				.pushType(Gift.PushType.valueOf(pushType))
 				.giftReceiverName(giftReceiverName)
