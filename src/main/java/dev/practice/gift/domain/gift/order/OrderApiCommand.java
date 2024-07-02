@@ -12,9 +12,16 @@ public class OrderApiCommand {
 	@Builder
 	@ToString
 	public static class Register {
-		private final Long buyerUserId;
+		private final Long userId;
 		private final String payMethod;
 		private final List<RegisterOrderItem> orderItemList;
+
+		private final String receiverName = "TEMP_VALUE";
+		private final String receiverPhone = "TEMP_VALUE";
+		private final String receiverZipcode = "TEMP_VALUE";
+		private final String receiverAddress = "TEMP_VALUE";
+		private final String receiverDetailAddress = "TEMP_VALUE";
+		private final String etcMessage = "TEMP_VALUE";
 	}
 
 	@Getter
