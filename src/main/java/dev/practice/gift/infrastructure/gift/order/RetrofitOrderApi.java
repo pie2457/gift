@@ -8,6 +8,6 @@ import retrofit2.http.POST;
 
 public interface RetrofitOrderApi {
 
-	@POST("api/v1/gift-orders/init")
+	@POST("api/v1/orders/init")
 	Call<CommonResponse<RetrofitOrderApiResponse.Register>> registerOrder(@Body OrderApiCommand.Register request);
 }
