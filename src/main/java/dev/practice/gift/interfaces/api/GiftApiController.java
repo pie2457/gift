@@ -32,4 +32,10 @@ public class GiftApiController {
 		var giftInfo = giftFacade.registerOrder(command);
 		return CommonResponse.success(new GiftDto.RegisterResponse(giftInfo));
 	}
+
+	@PostMapping("/{giftToken}/payment-processing")
+	public CommonResponse requestPaymentProcessing(@PathVariable String giftToken) {
+		giftFacade.requestPaymentProcessing(giftToken);
+		return CommonResponse.success("OK");
+	}
 }

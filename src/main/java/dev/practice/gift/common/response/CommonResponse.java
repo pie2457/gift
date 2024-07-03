@@ -27,6 +27,22 @@ public class CommonResponse<T> {
 			.build();
 	}
 
+	public static CommonResponse fail(String message, String errorCode) {
+		return CommonResponse.builder()
+			.result(Result.FAIL)
+			.message(message)
+			.errorCode(errorCode)
+			.build();
+	}
+
+	public static CommonResponse fail(ErrorCode errorCode) {
+		return CommonResponse.builder()
+			.result(Result.FAIL)
+			.message(errorCode.getErrorMsg())
+			.errorCode(errorCode.name())
+			.build();
+	}
+
 	public enum Result {
 		SUCCESS, FAIL
 	}

@@ -10,8 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
+import dev.practice.gift.common.exception.IllegalStatusException;
 import dev.practice.gift.common.exception.InvalidParamException;
 import dev.practice.gift.common.util.TokenGenerator;
 import dev.practice.gift.domain.AbstractEntity;
@@ -111,5 +112,18 @@ public class Gift extends AbstractEntity {
 		this.giftReceiverPhone = giftReceiverPhone;
 		this.giftMessage = giftMessage;
 		this.expiredAt = ZonedDateTime.now().plusDays(7);
+	}
+
+	public void inPayment() {
+		if (this.status != Status.INIT)
+			throw new IllegalStatusException("Gift inPayment");
+		this.status = Status.IN_PAYMENT;
+	}
+
+	public void completePayment() {
+		if (this.status != Status.IN_PAYMENT)
+			throw new IllegalStatusException("Gift paymentComplete");
+		this.status = Status.ORDER_COMPLETE;
+		this.paidAt = ZonedDateTime.now();
 	}
 }
