@@ -8,4 +8,6 @@ import dev.practice.gift.domain.gift.Gift;
 
 public interface GiftRepository extends JpaRepository<Gift, Long> {
 	Optional<Gift> findByGiftToken(String giftToken);
+
+	Optional<Gift> findByOrderToken(String orderToken);
 }

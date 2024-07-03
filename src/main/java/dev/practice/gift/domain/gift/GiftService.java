@@ -4,4 +4,8 @@ public interface GiftService {
 	GiftInfo getGiftInfo(String giftToken);
 
 	GiftInfo registerOrder(GiftCommand.Register request);
+
+	void requestPaymentProcessing(String giftToken);
+
+	void completePayment(String orderToken);
 }

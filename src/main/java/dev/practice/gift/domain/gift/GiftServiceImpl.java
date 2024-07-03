@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
 public class GiftServiceImpl implements GiftService {
 	private final GiftReader giftReader;
 	private final GiftStore giftStore;
@@ -22,11 +21,26 @@ public class GiftServiceImpl implements GiftService {
 	}
 
 	@Override
+	@Transactional
 	public GiftInfo registerOrder(GiftCommand.Register request) {
 		var orderCommand = giftToOrderMapper.of(request);
 		var orderToken = orderApiCaller.registerGiftOrder(orderCommand);
 		var initGift = request.toEntity(orderToken);
 		var gift = giftStore.store(initGift);
 		return new GiftInfo(gift);
+	}
+
+	@Override
+	@Transactional
+	public void requestPaymentProcessing(String giftToken) {
+		var gift = giftReader.getGiftBy(giftToken);
+		gift.inPayment();
+	}
+
+	@Override
+	@Transactional
+	public void completePayment(String orderToken) {
+		var gift = giftReader.getGiftByOrderToken(orderToken);
+		gift.completePayment();
 	}
 }

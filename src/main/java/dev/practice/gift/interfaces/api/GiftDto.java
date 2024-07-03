@@ -94,4 +94,11 @@ public class GiftDto {
 			this.giftToken = giftInfo.getGiftToken();
 		}
 	}
+
+	@Getter
+	@Setter
+	@ToString
+	public static class CompletePaymentRequest {
+		private String orderToken;
+	}
 }

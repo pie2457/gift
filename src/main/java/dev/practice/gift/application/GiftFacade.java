@@ -24,4 +24,12 @@ public class GiftFacade {
 		log.info("registerOrder orderToken = {}", giftInfo);
 		return giftInfo;
 	}
+
+	public void requestPaymentProcessing(String giftToken) {
+		giftService.requestPaymentProcessing(giftToken);
+	}
+
+	public void completePayment(String orderToken) {
+		giftService.completePayment(orderToken);
+	}
 }

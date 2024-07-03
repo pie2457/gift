@@ -44,6 +44,10 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor'
+    
+    // aws sqs
+    implementation platform('software.amazon.awssdk:bom:2.15.0')
+    implementation 'org.springframework.cloud:spring-cloud-aws-messaging:2.2.1.RELEASE'
 
     runtimeOnly 'com.mysql:mysql-connector-j'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
