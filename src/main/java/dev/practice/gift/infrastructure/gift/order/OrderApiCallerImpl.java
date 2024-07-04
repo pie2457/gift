@@ -3,6 +3,7 @@ package dev.practice.gift.infrastructure.gift.order;
 import org.springframework.stereotype.Component;
 
 import dev.practice.gift.common.response.CommonResponse;
+import dev.practice.gift.domain.gift.GiftCommand;
 import dev.practice.gift.domain.gift.order.OrderApiCaller;
 import dev.practice.gift.domain.gift.order.OrderApiCommand;
 import dev.practice.gift.infrastructure.retrofit.RetrofitUtils;
@@ -21,5 +22,11 @@ public class OrderApiCallerImpl implements OrderApiCaller {
 			.map(CommonResponse::getData)
 			.map(RetrofitOrderApiResponse.Register::getOrderToken)
 			.orElseThrow(RuntimeException::new);
+	}
+
+	@Override
+	public void updateReceiverInfo(String orderToken, GiftCommand.Accept request) {
+		var call = retrofitOrderApi.updateReceiverInfo(orderToken, request);
+		retrofitUtils.responseVoid(call);
 	}
 }

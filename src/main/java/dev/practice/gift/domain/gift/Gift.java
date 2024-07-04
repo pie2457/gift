@@ -126,4 +126,41 @@ public class Gift extends AbstractEntity {
 		this.status = Status.ORDER_COMPLETE;
 		this.paidAt = ZonedDateTime.now();
 	}
+
+	public void accept(GiftCommand.Accept request) {
+		var receiverName = request.getReceiverName();
+		var receiverPhone = request.getReceiverPhone();
+		var receiverZipcode = request.getReceiverZipcode();
+		var receiverAddress = request.getReceiverAddress();
+		var receiverDetailAddress = request.getReceiverDetailAddress();
+		var etcMessage = request.getEtcMessage();
+
+		if (!availableAccept())
+			throw new IllegalStatusException();
+		if (StringUtils.isEmpty(receiverName))
+			throw new InvalidParamException("Gift accept receiverName is empty");
+		if (StringUtils.isEmpty(receiverPhone))
+			throw new InvalidParamException("Gift accept receiverPhone is empty");
+		if (StringUtils.isEmpty(receiverZipcode))
+			throw new InvalidParamException("Gift accept receiverZipcode is empty");
+		if (StringUtils.isEmpty(receiverAddress))
+			throw new InvalidParamException("Gift accept receiverAddress is empty");
+		if (StringUtils.isEmpty(receiverDetailAddress))
+			throw new InvalidParamException("Gift accept receiverDetailAddress is empty");
+
+		this.status = Status.ACCEPT;
+		this.receiverName = receiverName;
+		this.receiverPhone = receiverPhone;
+		this.receiverZipcode = receiverZipcode;
+		this.receiverAddress = receiverAddress;
+		this.receiverDetailAddress = receiverDetailAddress;
+		this.etcMessage = etcMessage;
+		this.acceptedAt = ZonedDateTime.now();
+	}
+
+	private boolean availableAccept() {
+		if (this.expiredAt.isBefore(ZonedDateTime.now()))
+			return false;
+		return this.status == Status.ORDER_COMPLETE || this.status == Status.PUSH_COMPLETE;
+	}
 }

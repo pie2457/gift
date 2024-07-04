@@ -101,4 +101,26 @@ public class GiftDto {
 	public static class CompletePaymentRequest {
 		private String orderToken;
 	}
+
+	@Getter
+	@Setter
+	@ToString
+	public static class AcceptGiftRequest {
+		@NotBlank(message = "receiverName 는 필수값 입니다.")
+		private String receiverName;
+
+		@NotBlank(message = "receiverPhone 는 필수값 입니다.")
+		private String receiverPhone;
+
+		@NotBlank(message = "receiverZipcode 는 필수값 입니다.")
+		private String receiverZipcode;
+
+		@NotBlank(message = "receiverAddress 는 필수값 입니다.")
+		private String receiverAddress;
+
+		@NotBlank(message = "receiverDetailAddress 는 필수값 입니다.")
+		private String receiverDetailAddress;
+
+		private String etcMessage;
+	}
 }

@@ -8,4 +8,6 @@ public interface GiftService {
 	void requestPaymentProcessing(String giftToken);
 
 	void completePayment(String orderToken);
+
+	void acceptGift(GiftCommand.Accept request);
 }

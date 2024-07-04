@@ -43,4 +43,13 @@ public class GiftServiceImpl implements GiftService {
 		var gift = giftReader.getGiftByOrderToken(orderToken);
 		gift.completePayment();
 	}
+
+	@Override
+	@Transactional
+	public void acceptGift(GiftCommand.Accept request) {
+		var gift = giftReader.getGiftBy(request.getGiftToken());
+		gift.accept(request);
+
+		orderApiCaller.updateReceiverInfo(gift.getOrderToken(), request);
+	}
 }

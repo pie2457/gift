@@ -38,4 +38,14 @@ public class GiftApiController {
 		giftFacade.requestPaymentProcessing(giftToken);
 		return CommonResponse.success("OK");
 	}
+
+	@PostMapping("/{giftToken}/accept-gift")
+	public CommonResponse acceptGift(
+		@PathVariable String giftToken,
+		@RequestBody @Valid GiftDto.AcceptGiftRequest request
+	) {
+		var acceptCommand = giftDtoMapper.of(giftToken, request);
+		giftFacade.acceptGift(acceptCommand);
+		return CommonResponse.success("OK");
+	}
 }
