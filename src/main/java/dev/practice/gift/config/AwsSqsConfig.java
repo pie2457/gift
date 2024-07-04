@@ -13,10 +13,10 @@ import com.amazonaws.services.sqs.AmazonSQSAsyncClientBuilder;
 
 @Configuration
 public class AwsSqsConfig {
-	@Value("${cloud.aws.secretKey}")
+	@Value("${cloud.aws.access-key}")
 	private String awsAccessKey;
 
-	@Value("${cloud.aws.secretKey}")
+	@Value("${cloud.aws.secret-key}")
 	private String awsSecretKey;
 
 	@Bean
