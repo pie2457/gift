@@ -1,0 +1,3 @@
+[submodule "src/main/resources/order-gift-secret"]
+	path = src/main/resources/order-gift-secret
+	url = https://github.com/pie2457/order-gift-secret.git
