@@ -18,7 +18,7 @@
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=MySQL&logoColor=white)
 ![AmazonSQS](https://img.shields.io/badge/AmazonSQS-FF4F8B?style=flat&logo=auth0&logoColor=white)
 
-## 배포 프로세스
+## 인프라 구조
 <img width="760" alt="스크린샷 2024-07-17 오후 4 30 25" src="https://github.com/user-attachments/assets/8126daa4-2dd6-4788-b716-31ff7423baf6">
 
 ## SQS를 이용한 메세지 기반 비동기 통신
